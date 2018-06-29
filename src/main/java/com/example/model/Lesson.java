@@ -1,8 +1,7 @@
 package com.example.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,10 +21,9 @@ public class Lesson {
 	@NotBlank()
 	private String lessonName;
 	@NotNull(message = "credit cannot be null")
-	@NotBlank()
 	private int credit;
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private List<Course> courses=new ArrayList<>();
+	private Set<Course> courses=new HashSet<>();
 
 	public Lesson() {
 	}
@@ -59,13 +57,15 @@ public class Lesson {
 		this.credit = credit;
 	}
 
-	public List<Course> getCourses() {
+	
+	public Set<Course> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(List<Course> courses) {
+	public void setCourses(Set<Course> courses) {
 		this.courses = courses;
 	}
+
 	public void addCourses(Course c) {
 		courses.add(c);
 	}

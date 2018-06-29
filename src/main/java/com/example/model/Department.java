@@ -1,8 +1,7 @@
 package com.example.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,12 +22,12 @@ public class Department {
 	@NotNull(message = "Department name cannot be null")
 	@NotBlank()
 	private String departmentName;
-	@OneToMany(mappedBy="department",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	List<Course> courses = new ArrayList<>();
-	@OneToMany(mappedBy="department",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	 List<Student> students = new ArrayList<>();
-	@ManyToMany(mappedBy="departments",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	 List<Teacher> teachers = new ArrayList<>();
+	@OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	Set<Course> courses = new HashSet<>();
+	@OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	Set<Student> students = new HashSet<>();
+	@ManyToMany(mappedBy = "departments", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	Set<Teacher> teachers = new HashSet<>();
 	@ManyToOne
 	University university;
 
@@ -57,30 +56,29 @@ public class Department {
 		this.departmentName = departmentName;
 	}
 
-	public List<Course> getCourses() {
+	public Set<Course> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(List<Course> courses) {
+	public void setCourses(Set<Course> courses) {
 		this.courses = courses;
 	}
 
-	public List<Student> getStudents() {
+	public Set<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
 
-	public List<Teacher> getTeachers() {
+	public Set<Teacher> getTeachers() {
 		return teachers;
 	}
 
-	public void setTeachers(List<Teacher> teachers) {
+	public void setTeachers(Set<Teacher> teachers) {
 		this.teachers = teachers;
 	}
-	
 
 	public University getUniversity() {
 		return university;

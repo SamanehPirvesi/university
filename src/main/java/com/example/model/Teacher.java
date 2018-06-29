@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue("Teacher")
 public class Teacher extends User {
 	@NotNull(message = "salary cannot be null")
-	@NotBlank()
 	private double salary;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Course> courses = new HashSet<>();

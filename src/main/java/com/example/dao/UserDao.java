@@ -1,20 +1,15 @@
 package com.example.dao;
 
-import java.io.Serializable;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import com.example.model.User;
 import com.example.utility.HibernateUtil;
 
-public class UserDao implements Serializable {
+public class UserDao {
 	
-	private static final long serialVersionUID = 1L;
-
-	
-	public boolean createUser(User u) {
+		public boolean createUser(User u) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;

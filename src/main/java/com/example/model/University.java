@@ -1,8 +1,7 @@
 package com.example.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,34 +20,43 @@ public class University {
 	@NotNull(message = "University name cannot be null")
 	@NotBlank()
 	private String universityName;
-	@OneToMany(mappedBy="university",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private List<Department> departments=new ArrayList<>();
+	@OneToMany(mappedBy = "university", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Department> departments = new HashSet<>();
+
 	public University() {
-		
+
 	}
+
 	public University(String universityName) {
-		
+
 		this.universityName = universityName;
 	}
+
 	public long getUniversityId() {
 		return universityId;
 	}
+
 	public void setUniversityId(long universityId) {
 		this.universityId = universityId;
 	}
+
 	public String getUniversityName() {
 		return universityName;
 	}
+
 	public void setUniversityName(String universityName) {
 		this.universityName = universityName;
 	}
-	public List<Department> getDepartments() {
+
+	public Set<Department> getDepartments() {
 		return departments;
 	}
-	public void setDepartments(List<Department> departments) {
+
+	public void setDepartments(Set<Department> departments) {
 		this.departments = departments;
 	}
-public void addDepartment(Department d) {
-	departments.add(d);
-}
+
+	public void addDepartment(Department d) {
+		departments.add(d);
+	}
 }
