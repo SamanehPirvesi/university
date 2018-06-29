@@ -9,7 +9,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,8 +25,8 @@ public class Teacher extends User {
 
 	}
 
-	public Teacher(String userName, String password, String type, Date birthday, double salary) {
-		super(userName, password, type, birthday);
+	public Teacher(String userName, String password,String name, String surName, String type, Date birthday, double salary) {
+		super(userName, password,name,surName, type, birthday);
 		this.salary = salary;
 	}
 

@@ -1,11 +1,16 @@
 package com.example.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.example.dao.UserDao;
 import com.example.model.User;
 
-public class UserService {
+public class UserService implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	UserDao udao = new UserDao();
 
 	public boolean createUser(User u) {
@@ -44,4 +49,8 @@ public class UserService {
 	public boolean deleteUser(User u) {
 		return udao.deleteUser(u);
 	}
+	public void fillUserBean( User userdb,User userBean) {
+		 udao.fillUserBean(userdb, userBean);
+	}
 }
+	

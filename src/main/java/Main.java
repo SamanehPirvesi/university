@@ -13,6 +13,7 @@ import com.example.service.LessonService;
 import com.example.service.StudentService;
 import com.example.service.UniversityService;
 import com.example.service.UserService;
+import com.example.utility.PasswordCodification;
 
 public class Main {
 
@@ -22,11 +23,11 @@ public class Main {
 		Date d2 = new Date(17 / 9 / 1990);
 		Date d3 = new Date(18 / 11 / 1977);
 		Date d4 = new Date(28 / 13 / 1980);
-		User u = new User("admin", "admin1234", "admin", d1);
-		Student s = new Student("sara", "sansone12", "student", d2);
-		Student s1 = new Student("sahar", "afshar123", "student", d4);
-		Teacher t = new Teacher("maria", "ivano2345", "teacher", d3, 1400);
-		Teacher t1 = new Teacher("marco", "12345678", "teacher", d1, 2500);
+		User u = new User("admin", "admin1234","admin","admin", "admin", d1);
+		Student s = new Student("sara", "sansone12","sara","sansone", "student", d2);
+		Student s1 = new Student("sahar", "afshar123", "sahar", "afshar","student", d4);
+		Teacher t = new Teacher("maria", "ivano2345", "maria","famiani","teacher", d3, 1400);
+		Teacher t1 = new Teacher("marco", "12345678","marco","toserani", "teacher", d1, 2500);
 		Lesson l = new Lesson("mathematic",10);
 		Lesson l2 = new Lesson("algorithm",6);
 		Course c = new Course("software",180);
@@ -73,19 +74,23 @@ public class Main {
 		dp1.setUniversity(uni);
 		dp.setUniversity(uni);
 		
-		universityService.createUniversity(uni);
-		departmentService.createDepartment(dp);
-		departmentService.createDepartment(dp1);
-		lService.createLesson(l);
-		lService.createLesson(l2);
-		courseService.createCourse(c);
-		courseService.createCourse(c1);
-		courseService.createCourse(c2);
-		userService.createUser(u);
-		userService.createUser(s);
-		userService.createUser(s1);
-		userService.createUser(t);
-		userService.createUser(t1);
+		
+//		universityService.createUniversity(uni);
+//		departmentService.createDepartment(dp);
+//		departmentService.createDepartment(dp1);
+//		lService.createLesson(l);
+//		lService.createLesson(l2);
+//		courseService.createCourse(c);
+//		courseService.createCourse(c1);
+//		courseService.createCourse(c2);
+//		userService.createUser(u);
+//		userService.createUser(s);
+//		userService.createUser(s1);
+//		userService.createUser(t);
+//		userService.createUser(t1);
+//		User u5=userService.getUserByUserName("admin");
+//		u5.setPassword(PasswordCodification.codificatePass("12345678"));
+//		userService.updateUser(u5);
 
 		}
 

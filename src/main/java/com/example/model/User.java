@@ -29,20 +29,29 @@ public class User {
 	@Size(min = 8, max = 32, message = "password must be between 8 and 32 characters")
 	@NotBlank()
 	private String password;
-	String type;
-	private boolean logeIn;
-	private Date Birthday = new Date();
+	@NotNull(message = "Name cannot be null")
+	@NotBlank()
+	private String name;
+	@NotNull(message = "surName cannot be null")
+	@NotBlank()
+	private String surName;
+	private String type;
+	private boolean loggedIn;
+	private Date birthday = new Date();
 
 	public User() {
 
 	}
 
-	public User( String userName, String password, String type, Date birthday) {
+	public User( String userName,String password,String name, String surName, String type, Date birthday) {
+		super();
 		this.userName = userName;
 		this.password = password;
+		this.name = name;
+		this.surName = surName;
 		this.type = type;
-		Birthday = birthday;
-		this.logeIn = false;
+		this.birthday = birthday;
+		this.loggedIn=false;
 	}
 
 	public long getUserId() {
@@ -77,20 +86,36 @@ public class User {
 		this.type = type;
 	}
 
-	public boolean isLogeIn() {
-		return logeIn;
+	public boolean isLoggedIn() {
+		return loggedIn;
 	}
 
-	public void setLogeIn(boolean logeIn) {
-		this.logeIn = logeIn;
+	public void setLoggedIn(boolean logeIn) {
+		this.loggedIn = logeIn;
 	}
 
 	public Date getBirthday() {
-		return Birthday;
+		return birthday;
 	}
 
 	public void setBirthday(Date birthday) {
-		Birthday = birthday;
+		this.birthday = birthday;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurName() {
+		return surName;
+	}
+
+	public void setSurName(String surName) {
+		this.surName = surName;
 	}
 
 }

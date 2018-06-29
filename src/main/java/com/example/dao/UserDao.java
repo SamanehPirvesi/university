@@ -204,5 +204,11 @@ public class UserDao {
 
 		return res;
 	}
+	public void fillUserBean( User userdb,User userBean) {
+		userBean.setUserId(userdb.getUserId());
+		userBean.setType(userdb.getType());
+		userBean.setPassword(null);
+		}
+
 
 }
