@@ -50,7 +50,7 @@
                                     <a href="<%=request.getContextPath()%>/student/registerStudent.jsp">create new student</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/listOfContacts.jsp">student's list</a>
+                                    <a href="<%=request.getContextPath()%>/student/listOfStudents.jsp">student's list</a>
                                 </li>
                                 
                             </ul>

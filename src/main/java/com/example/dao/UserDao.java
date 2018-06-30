@@ -93,7 +93,7 @@ public class UserDao {
 		}
 		return list;
 	}
-	public List<User> getUserByType(String type) {
+	public List<User> getListOfUsersByType(String type) {
 		List<User> list = null;
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;

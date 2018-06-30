@@ -30,8 +30,8 @@ public class UserService implements Serializable{
 		return udao.getAllUser();
 	}
 
-	public List<User> getUserByType(String type) {
-		return udao.getUserByType(type);
+	public List<User> getListOfUsersByType(String type) {
+		return udao.getListOfUsersByType(type);
 	}
 
 	public boolean updateUser(User u) {

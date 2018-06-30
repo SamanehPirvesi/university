@@ -25,6 +25,7 @@ public class Main {
 		Date d4 = new Date(28 / 13 / 1980);
 		User u = new User("admin", "admin1234","admin","admin", "admin", d1);
 		Student s = new Student("sara", "sansone12","sara","sansone", "student", d2);
+		Student s4= new Student("sina", "s12345678","sina","ahadi", "student", d2);
 		Student s1 = new Student("sahar", "afshar123", "sahar", "afshar","student", d4);
 		Teacher t = new Teacher("maria", "ivano2345", "maria","famiani","teacher", d3, 1400);
 		Teacher t1 = new Teacher("marco", "12345678","marco","toserani", "teacher", d1, 2500);
@@ -91,7 +92,14 @@ public class Main {
 //		User u5=userService.getUserByUserName("admin");
 //		u5.setPassword(PasswordCodification.codificatePass("12345678"));
 //		userService.updateUser(u5);
-
+//s4.setCourse(c);
+//s4.setDepartment(dp1);
+//c.addStudent(s4);
+//dp.addStudent(s4);
+//courseService.updateCourse(c);
+//departmentService.updateDepartment(dp1);
+//		studentService.getAllStudent().stream().forEach(g->System.out.println(g.getName()));
+		
 		}
 
 }

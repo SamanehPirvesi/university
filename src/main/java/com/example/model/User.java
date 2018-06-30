@@ -29,10 +29,10 @@ public class User {
 	@Size(min = 8, max = 32, message = "password must be between 8 and 32 characters")
 	@NotBlank()
 	private String password;
-	@NotNull(message = "Name cannot be null")
+	@NotNull(message = "name cannot be null")
 	@NotBlank()
 	private String name;
-	@NotNull(message = "surName cannot be null")
+	@NotNull(message = "surname cannot be null")
 	@NotBlank()
 	private String surName;
 	private String type;
@@ -40,11 +40,11 @@ public class User {
 	private Date birthday = new Date();
 
 	public User() {
-
+		
+		this.loggedIn=false;
 	}
 
 	public User( String userName,String password,String name, String surName, String type, Date birthday) {
-		super();
 		this.userName = userName;
 		this.password = password;
 		this.name = name;

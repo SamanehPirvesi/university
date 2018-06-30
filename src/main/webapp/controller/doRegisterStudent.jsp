@@ -24,18 +24,20 @@ Course readedCourse=courseService.getCourseById(course.getCourseId());
 	Set<String> errors = ValidatorBeanUtil.validateAndGetErrors(student);
 	if (student != null && readedUser == null && errors.size() == 0) {
 		student.setPassword(PasswordCodification.codificatePass(student.getPassword()));
-		student.setDepartment(department);
-		student.setCourse(course);
-		course.addStudent(student);
-		department.addStudent(student);
-		departmentService.updateDepartment(department);
-		courseService.updateCourse(course);
+		student.setDepartment(readedDepartment);
+		student.setCourse(readedCourse);
+		readedCourse.addStudent(student);
+		readedDepartment.addStudent(student);
 		userService.createUser(student);
+		departmentService.updateDepartment(readedDepartment);
+		courseService.updateCourse(readedCourse);
+		System.out.println(student.getDepartment().getDepartmentName());
+		System.out.println(student.getSurName());
 		response.sendRedirect("../userPortal/adminHome.jsp");
 	} else {
 		if (readedUser != null) {
 			errors.clear();
-			errors.add("user " + student.getSurName() + " already existed, please choose another username");
+			errors.add("user " + student.getSurName() + " already existed, please Enter another Student");
 		}
 		request.setAttribute("errors", errors);
 %>
