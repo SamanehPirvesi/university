@@ -50,7 +50,7 @@ public class StudentDao {
 		return res;
 
 	}
-	public List<Student> getAllStudents() {
+	public List<Student> getListOfAllStudents() {
 		List<Student> list = null;
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;

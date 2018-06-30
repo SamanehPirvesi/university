@@ -60,10 +60,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Teachers<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/registerContact.jsp">create new teacher</a>
+                                    <a href="<%=request.getContextPath()%>/teacher/registerTeacher.jsp">create new teacher</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/listOfContacts.jsp">teacher's list</a>
+                                    <a href="<%=request.getContextPath()%>/teacher/listOfTeachers.jsp">teacher's list</a>
                                 </li>
                            </ul>
                           </li>

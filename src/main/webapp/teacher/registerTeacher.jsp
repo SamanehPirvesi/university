@@ -31,7 +31,7 @@ Set<String> errors =(Set<String>)request.getAttribute("errors");
 			  </ul>
 			</c:if>
 				<form id="signupform" class="form-horizontal" role="form"
-					action="../controller/doRegisterStudent.jsp" method="post">
+					action="../controller/doRegisterTeacher.jsp" method="post">
 					<div id="signupalert" style="display: none"
 						class="alert alert-danger">
 						<p>Error:</p>
@@ -77,7 +77,7 @@ Set<String> errors =(Set<String>)request.getAttribute("errors");
 					<div class="form-group">
 						<label for="type" class="col-md-3 control-label">Type</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" name="type" value="student"
+							<input type="text" class="form-control" name="type" value="teacher"
 								id="type">
 						</div>
 					</div> 
@@ -93,6 +93,13 @@ Set<String> errors =(Set<String>)request.getAttribute("errors");
 						<div class="col-md-9">
 							<input type="text" class="form-control" name="courseId" 
 								id="courseId">
+						</div>
+					</div> 
+					<div class="form-group">
+						<label for="salary" class="col-md-3 control-label">Salary</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="salary" 
+								id="salary">
 						</div>
 					</div> 
 					 

@@ -15,8 +15,8 @@ public class StudentService {
 	public boolean updateStudentCourseById(long StudentId, long CourseId) {
 		return sdao.updateStudentCourseById(StudentId, CourseId);
 	}
-	public List<Student> getAllStudents() {
-		return sdao.getAllStudents();
+	public List<Student> getListOfAllStudents() {
+		return sdao.getListOfAllStudents();
 	}
 	public Student getStudentById(long id) {
 		return sdao.getStudentById(id);
