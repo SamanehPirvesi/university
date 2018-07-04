@@ -28,8 +28,6 @@ public class Department {
 	Set<Student> students = new HashSet<>();
 	@ManyToMany(mappedBy = "departments", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	Set<Teacher> teachers = new HashSet<>();
-	@ManyToOne
-	University university;
 
 	public Department() {
 
@@ -78,14 +76,6 @@ public class Department {
 
 	public void setTeachers(Set<Teacher> teachers) {
 		this.teachers = teachers;
-	}
-
-	public University getUniversity() {
-		return university;
-	}
-
-	public void setUniversity(University university) {
-		this.university = university;
 	}
 
 	public void addCourse(Course c) {

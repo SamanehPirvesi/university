@@ -28,4 +28,11 @@ public class CourseService {
 	public List<Lesson> getListOfLessonForCourse(long id) {
 		return cdao.getListOfLessonForCourse(id);
 	}
+	public List<Course> getListOfAllCourses(){
+		return cdao.getAllCourses();
+	}
+	public Course getCoursementByName(String courseName) {
+		return cdao.getCoursementByName(courseName);
+
+	}
 }

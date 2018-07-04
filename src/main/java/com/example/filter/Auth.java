@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.model.User;
+import com.example.utility.AuthUtility;
 
 /**
  * Servlet Filter implementation class Auth
  */
-@WebFilter(dispatcherTypes = {DispatcherType.REQUEST }
-					, urlPatterns = { "/userPortal/*", "/phonebook/*"})
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/teacher/*","/student/*", "/controller/*" })
 public class Auth implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public Auth() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public Auth() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -38,24 +38,26 @@ public class Auth implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-          HttpServletRequest httpReq=(HttpServletRequest) request;
-      User u= (User) httpReq.getSession().getAttribute("user");
-     
-         if(u!=null && u.isLoggedIn()== true) {
-          chain.doFilter(request, response);
-          }else {
-       	  HttpServletResponse res= (HttpServletResponse)response;
-        	  res.sendRedirect(httpReq.getContextPath()+"/login.jsp");
-         }
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+
+		HttpServletRequest httpReq = (HttpServletRequest) request;
+		User u = (User) httpReq.getSession().getAttribute("user");
+
+		String uri = httpReq.getRequestURI();
+		if (AuthUtility.canUserProceed(uri, u)) {
+			chain.doFilter(request, response);
+		} else {
+			HttpServletResponse res = (HttpServletResponse) response;
+			res.sendRedirect(httpReq.getContextPath() + "/login.jsp");
+		}
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		
+
 	}
 
 }

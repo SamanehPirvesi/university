@@ -38,4 +38,12 @@ public class DepartmentService {
 	public List<Teacher> getListOfTeacherForDepartment(long id) {
 		return dDao.getListOfTeacherForDepartment(id);
 	}
+	public List<Department> getListAllDepartments() {
+		return dDao.getAllDepartments();
+	
+	}
+	public Department getDeaprtmentByName(String departmentName) {
+		return dDao.getDeaprtmentByName(departmentName);
+	}
+
 }

@@ -11,16 +11,15 @@
  <% 
 User readedUser = uservice.getUserByUserName(user.getUserName());
 Set<String> errors=new HashSet<String>(); 
-
 if (readedUser != null && user.getPassword()!=null&& readedUser.getPassword().equals(PasswordCodification.codificatePass(user.getPassword()))) { 
 readedUser.setLoggedIn(true); 
 user.setLoggedIn(true); 
 uservice.updateUser( readedUser);
 uservice.fillUserBean(readedUser,user);	
 String type=user.getType();
-switch (type){
+switch (type.toLowerCase()){
 case "admin" : 
-	response.sendRedirect("./userPortal/adminHome.jsp");
+	response.sendRedirect("./adminPortal/adminHome.jsp");
 	break;
 case "student" :
 	response.sendRedirect("./userPortal/studentHome.jsp");

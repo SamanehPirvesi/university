@@ -5,13 +5,12 @@ import com.example.model.Department;
 import com.example.model.Lesson;
 import com.example.model.Student;
 import com.example.model.Teacher;
-import com.example.model.University;
 import com.example.model.User;
 import com.example.service.CourseService;
 import com.example.service.DepartmentService;
 import com.example.service.LessonService;
 import com.example.service.StudentService;
-import com.example.service.UniversityService;
+import com.example.service.TeacherService;
 import com.example.service.UserService;
 import com.example.utility.PasswordCodification;
 
@@ -36,13 +35,13 @@ public class Main {
 		Course c2 = new Course("Biology",180);
 		Department dp = new Department("computer");
 		Department dp1 = new Department("chemistry");
-		University uni = new University("politecnic turin");
 		UserService userService=new UserService();
 		LessonService lService=new LessonService();
 		StudentService studentService=new StudentService();
 		CourseService courseService=new CourseService();
 		DepartmentService departmentService=new DepartmentService();
-		UniversityService universityService=new UniversityService();
+		TeacherService ts=new TeacherService();
+	
 		
 		s.setCourse(c);
 		c.addStudent(s);
@@ -70,13 +69,9 @@ public class Main {
 		c.setDepartment(dp);
 		dp.addCourse(c1);
 		c1.setDepartment(dp);
-		uni.addDepartment(dp1);
-		uni.addDepartment(dp);
-		dp1.setUniversity(uni);
-		dp.setUniversity(uni);
 		
 		
-//		universityService.createUniversity(uni);
+	
 //		departmentService.createDepartment(dp);
 //		departmentService.createDepartment(dp1);
 //		lService.createLesson(l);
@@ -89,9 +84,9 @@ public class Main {
 //		userService.createUser(s1);
 //		userService.createUser(t);
 //		userService.createUser(t1);
-//		User u5=userService.getUserByUserName("admin");
-//		u5.setPassword(PasswordCodification.codificatePass("12345678"));
-//		userService.updateUser(u5);
+		User u5=userService.getUserByUserName("admin");
+		u5.setPassword(PasswordCodification.codificatePass("12345678"));
+		userService.updateUser(u5);
 //s4.setCourse(c);
 //s4.setDepartment(dp1);
 //c.addStudent(s4);
@@ -99,7 +94,9 @@ public class Main {
 //courseService.updateCourse(c);
 //departmentService.updateDepartment(dp1);
 //		studentService.getAllStudent().stream().forEach(g->System.out.println(g.getName()));
+//		ts.getListOfCoursesForTeacher(5).stream().forEach(y->System.out.println(y.getCourseName()));
 		
 		}
+	
 
 }

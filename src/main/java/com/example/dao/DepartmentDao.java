@@ -48,6 +48,25 @@ public class DepartmentDao {
 		}
 		return d;
 	}
+		public Department getDeaprtmentByName(String departmentName) {
+			Department u = null;
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				Query<Department> query = session.createQuery("from Department where departmentName=:name", Department.class);
+				query.setParameter("name", departmentName);
+				u = (Department) query.uniqueResult();
+				tx.commit();
+			} catch (Exception ex) {
+				tx.rollback();
+			} finally {
+				session.close();
+			}
+			return u;
+		}
+
 
 	public boolean updateDepartment(Department d) {
 		boolean res = false;
@@ -140,6 +159,28 @@ public class DepartmentDao {
 			Query<Teacher> query = session.createQuery("FROM Teacher where department_departmentId=:id",Teacher.class);
 			query.setParameter("id", id);
 			list = query.getResultList();
+			tx.commit();
+		} catch (Exception ex) {
+
+			tx.rollback();
+
+		} finally {
+			session.close();
+		}
+
+		return list;
+
+	}
+	public List<Department> getAllDepartments() {
+		List<Department> list = null;
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("FROM Department");
+		
+			list =query.getResultList();
 			tx.commit();
 		} catch (Exception ex) {
 

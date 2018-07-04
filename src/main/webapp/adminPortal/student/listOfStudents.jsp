@@ -1,24 +1,27 @@
+<%@page import="com.example.model.Department"%>
 <%@page import="com.example.model.Student"%>
 <%@page import="com.example.model.User"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="Student" class="com.example.model.Student" scope="page"></jsp:useBean>
+<jsp:useBean id="departmentService"	class="com.example.service.DepartmentService" scope="page"></jsp:useBean>
 <jsp:useBean id="studentService" class="com.example.service.StudentService" scope="page"></jsp:useBean>
 <%
 	List<Student> students = studentService.getListOfAllStudents();
+    List<Department> departments= departmentService.getListAllDepartments();
 	pageContext.setAttribute("students", students);
+	
 %>
 
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="../layout/header.jsp"></jsp:include>
+<jsp:include page="../../layout//header.jsp"></jsp:include>
 <body>
 
 	<div id="wrapper">
 
-		<jsp:include page="../layout/adminSidebar.jsp"></jsp:include>
+		<jsp:include page="../../layout/adminSidebar.jsp"></jsp:include>
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
@@ -43,6 +46,7 @@
 												<th>#</th>
 												<th>Student Name</th>
 												<th>Student Surname</th>
+												<th>BirthDay</th>
 												<th>Student Department</th>
 												<th>Student Course</th>
 												<th>action</th>
@@ -56,9 +60,12 @@
 													<td><c:out value="${i}" /></td>
 													<td><c:out value="${u.name}" /></td>
 													<td><c:out value="${u.surName}" /></td>
- 													<td><c:out value="${u.department.departmentId}" /></td> 
+													<td><c:out value="${u.birthday}"/></td>
+												
+											    	<td><c:out value="${d.departmentName}" /></td>
+ 													
  													<td><c:out value="${u.course.courseId}" /></td>
-													<td>
+ 													<td>
 													 <button id="editBtn" type="submit" class="fa fa-edit" onclick="submitRequest(${u.userId},'edit');"></button>
 													 <button type="submit" class="fa fa-trash-o" onclick="submitRequest(${u.userId},'delete');"></button>														
 													</td>
@@ -81,7 +88,7 @@
 		</div>
 		<!-- /#page-wrapper -->
 	</div>
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
+	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 	<script type="text/javascript">
 	 
 		  function submitRequest(studentId,action) {

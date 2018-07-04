@@ -1,3 +1,4 @@
+<%@page import="com.example.utility.DateUtil"%>
 <%@page import="com.example.model.Course"%>
 <%@page import="com.example.model.Department"%>
 <%@page import="com.example.service.UserService"%>
@@ -9,22 +10,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="student" class="com.example.model.Student" scope="request"></jsp:useBean>
-<jsp:useBean id="department" class="com.example.model.Department" scope="request"></jsp:useBean>
-<jsp:useBean id="course" class="com.example.model.Course" scope="request"></jsp:useBean>
 <jsp:useBean id="userService" class="com.example.service.UserService" scope="page"></jsp:useBean>
 <jsp:useBean id="courseService" class="com.example.service.CourseService" scope="page"></jsp:useBean>
 <jsp:useBean id="departmentService" class="com.example.service.DepartmentService" scope="page"></jsp:useBean>
 <jsp:setProperty property="*" name="student" />
-<jsp:setProperty property="*" name="department" />
-<jsp:setProperty property="*" name="course" />
+
 <% 
 User readedUser = userService.getUserByUserName(student.getUserName());
-Department readedDepartment=departmentService.getDepartmentById(department.getDepartmentId());
-Course readedCourse=courseService.getCourseById(course.getCourseId());
+student.setBirthday(DateUtil.getStringToDate(request.getParameter("birthday_Costum")));
+long courseId = Long.parseLong(request.getParameter("courseId"));
+long departmentId=Long.parseLong(request.getParameter("departmentId"));
+Department readedDepartment=departmentService.getDepartmentById(departmentId);
+Course readedCourse=courseService.getCourseById(courseId);
+
 	Set<String> errors = ValidatorBeanUtil.validateAndGetErrors(student);
 	if (student != null && readedUser == null && errors.size() == 0) {
 		student.setPassword(PasswordCodification.codificatePass(student.getPassword()));
 		student.setDepartment(readedDepartment);
+		student.setType("student");
 		student.setCourse(readedCourse);
 		readedCourse.addStudent(student);
 		readedDepartment.addStudent(student);
@@ -32,7 +35,7 @@ Course readedCourse=courseService.getCourseById(course.getCourseId());
 		departmentService.updateDepartment(readedDepartment);
 		courseService.updateCourse(readedCourse);
 		
-		response.sendRedirect("../userPortal/adminHome.jsp");
+		response.sendRedirect("../student/listOfStudents.jsp");
 	} else {
 		if (readedUser != null) {
 			errors.clear();

@@ -1,6 +1,9 @@
 package com.example.service;
 
+import java.util.List;
+
 import com.example.dao.LessonDao;
+import com.example.model.Course;
 import com.example.model.Lesson;
 
 public class LessonService {
@@ -25,5 +28,17 @@ public class LessonService {
 	public boolean deleteLesson(Lesson l) {
 		return ldao.deleteLesson(l);
 	}
+	public List<Lesson> getAllLessons() {
+		return ldao.getAllLessones();
+	}
+	public Lesson getlessonByName(String name) {
+		return ldao.getlessonByName(name);
+
+		
+	}
+	public List<Course> getListOfCoursesForLesson(long id) {
+		return ldao.getListOfCoursesForLesson(id);
+	}
+
 
 }

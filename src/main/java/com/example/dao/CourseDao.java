@@ -45,6 +45,24 @@ public class CourseDao {
 		}
 		return c;
 	}
+		public Course getCoursementByName(String courseName) {
+			Course c = null;
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				Query<Course> query = session.createQuery("from Course where courseName=:name", Course.class);
+				query.setParameter("name", courseName);
+				c = (Course) query.uniqueResult();
+				tx.commit();
+			} catch (Exception ex) {
+				tx.rollback();
+			} finally {
+				session.close();
+			}
+			return c;
+		}
 
 	public boolean updateCourse(Course c) {
 		boolean res = false;
@@ -93,6 +111,28 @@ public class CourseDao {
 			Query<Lesson> query = session.createQuery("FROM Lesson where Course_courseId=:courseid",Lesson.class);
 			query.setParameter("courseid", id);
 			list = query.getResultList();
+			tx.commit();
+		} catch (Exception ex) {
+
+			tx.rollback();
+
+		} finally {
+			session.close();
+		}
+
+		return list;
+
+	}
+	public List<Course> getAllCourses() {
+		List<Course> list = null;
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("FROM Course");
+		
+			list =query.getResultList();
 			tx.commit();
 		} catch (Exception ex) {
 

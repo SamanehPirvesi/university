@@ -22,7 +22,7 @@ public class Lesson {
 	private String lessonName;
 	@NotNull(message = "credit cannot be null")
 	private int credit;
-	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToMany
 	private Set<Course> courses=new HashSet<>();
 
 	public Lesson() {

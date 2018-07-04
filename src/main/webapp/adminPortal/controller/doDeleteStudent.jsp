@@ -9,6 +9,6 @@
 long id =  Long.parseLong(request.getParameter("studentId"));
 Student st=studentService.getStudentById(id);
 studentService.deleteStudent(st);
-response.sendRedirect(request.getContextPath()+"/student/listOfStudents.jsp");
+response.sendRedirect(request.getContextPath()+"/adminPortal/student/listOfStudents.jsp");
 %>
 

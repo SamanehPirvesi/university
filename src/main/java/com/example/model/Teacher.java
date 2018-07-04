@@ -16,9 +16,9 @@ import javax.validation.constraints.NotNull;
 public class Teacher extends User {
 	@NotNull(message = "salary cannot be null")
 	private double salary;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany
 	private Set<Course> courses = new HashSet<>();
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany
 	private Set<Department> departments = new HashSet<>();
 
 	public Teacher() {

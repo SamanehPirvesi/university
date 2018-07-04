@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-   <!-- Navigation -->
+    <jsp:useBean id="user" class="com.example.model.User" scope="session"></jsp:useBean>
+    <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -39,18 +40,19 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+                    <li ><h3> welcome ${user.userName} </h3></li>
                        
                         <li>
-                            <a href="<%=request.getContextPath()%>/userPortal/adminHome.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                            <a href="<%=request.getContextPath()%>/adminPortal/adminHome.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Students<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/student/registerStudent.jsp">create new student</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/student/registerStudent.jsp">create new student</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/student/listOfStudents.jsp">student's list</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/student/listOfStudents.jsp">student's list</a>
                                 </li>
                                 
                             </ul>
@@ -60,10 +62,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Teachers<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/teacher/registerTeacher.jsp">create new teacher</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/teacher/registerTeacher.jsp">create new teacher</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/teacher/listOfTeachers.jsp">teacher's list</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/teacher/listOfTeachers.jsp">teacher's list</a>
                                 </li>
                            </ul>
                           </li>
@@ -71,10 +73,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Courses<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/registerContact.jsp">create new course</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/course/registerCourse.jsp">create new course</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/listOfContacts.jsp">course's list</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/course/listOfCourses.jsp">course's list</a>
                                 </li>
                           </ul>
                         
@@ -83,10 +85,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Department<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/registerContact.jsp">create new department</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/department/registerDepartment.jsp">create new department</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/listOfContacts.jsp">department's list</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/department/listOfDepartments.jsp">department's list</a>
                                 </li>
                                 
                             </ul>
@@ -95,10 +97,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Lessons<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/registerContact.jsp">create new lesson</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/lesson/registerLesson.jsp">create new lesson</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/phonebook/listOfContacts.jsp">lesson's list</a>
+                                    <a href="<%=request.getContextPath()%>/adminPortal/lesson/listOfLessones.jsp">lesson's list</a>
                                 </li>
                                 
                             </ul>
