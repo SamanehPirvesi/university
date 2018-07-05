@@ -13,8 +13,9 @@ String lessonName=request.getParameter("lessonName");
 Course readedCourse=courseService.getCourseById(course);
 Lesson lesson=lessonService.getLessonById(id);
 lesson.setLessonName(lessonName);
-lesson.addCourses(readedCourse);
+readedCourse.addLessons(lesson);
 lessonService.updateLesson(lesson);
+courseService.updateCourse(readedCourse);
 response.sendRedirect("../lesson/listOfLessones.jsp");
 %>
 

@@ -74,7 +74,7 @@ public class LessonDao {
 				tx = session.getTransaction();
 				tx.begin();
 				Query query = session.createNativeQuery("Select * From Course c, Lesson_Course lT where c.courseId = lT.courses_courseId And lT.lessons_lessonId=:lessonid").addEntity(Course.class);
-				query.setParameter("lessonId", id);
+				query.setParameter("lessonid", id);
 				 list =  query.getResultList();
 				tx.commit();
 			} catch (Exception ex) {
