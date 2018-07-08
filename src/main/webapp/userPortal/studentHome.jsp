@@ -7,7 +7,7 @@
 <jsp:include page="../layout/header.jsp"></jsp:include>
 <body>
 <div id="wrapper">
-<jsp:include page="../layout/teacherSidebar.jsp"></jsp:include>
+<jsp:include page="../layout/studentSidebar.jsp"></jsp:include>
 <!-- Page Content -->
 <div id="page-wrapper">
 <div class="container-fluid">

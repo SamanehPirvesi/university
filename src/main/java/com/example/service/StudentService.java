@@ -3,6 +3,7 @@ package com.example.service;
 import java.util.List;
 
 import com.example.dao.StudentDao;
+import com.example.model.Lesson;
 import com.example.model.Student;
 
 public class StudentService {
@@ -27,5 +28,8 @@ public class StudentService {
 	public boolean deleteStudent(Student s) {
 		return sdao.deleteStudent(s);
 	}
-
+	public List<Lesson> getListOfLessonForStudent(long id) {
+		return sdao.getListOfLessonForStudent(id);
+	
+	}
 }

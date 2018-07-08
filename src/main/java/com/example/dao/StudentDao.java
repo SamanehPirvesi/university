@@ -4,6 +4,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import com.example.model.Course;
+import com.example.model.Lesson;
 import com.example.model.Student;
 import com.example.utility.HibernateUtil;
 
@@ -117,5 +120,23 @@ public class StudentDao {
 		}
 
 		return res;
+	}
+	public List<Lesson> getListOfLessonForStudent(long id) {
+		List<Lesson> list = null;
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createNativeQuery("Select * From Lesson l, Student_Lesson st where l.lessonId = st.lessons_lessonId And st.students_userId=:studentid").addEntity(Lesson.class);
+			query.setParameter("studentid", id);
+			 list =  query.getResultList();
+			tx.commit();
+		} catch (Exception ex) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 }
