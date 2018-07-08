@@ -43,7 +43,7 @@
 											<div class="form-group">
 											<label class="col-md-3 control-label">Lesson Name</label> 
 											<div class="col-md-9">
-											<input class="form-control"	name="name" value="${lesson.lessonName}">
+											<input class="form-control"	name="lessonName" value="${lesson.lessonName}">
 											</div>
 											</div>
 											<input type="hidden" class="form-control" name="lessonId" value="${lesson.lessonId}">

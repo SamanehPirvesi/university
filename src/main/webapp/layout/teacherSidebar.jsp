@@ -43,40 +43,16 @@
                     <li ><h3> welcome ${user.userName} </h3></li>
                        
                         <li>
-                            <a href="<%=request.getContextPath()%>/userPortal/adminHome.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                            <a href="<%=request.getContextPath()%>/userPortal/teacherHome.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Students<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/student/registerStudent.jsp">create new student</a>
-                                </li>
-                                <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/student/listOfStudents.jsp">student's list</a>
-                                </li>
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Teachers<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/teacher/registerTeacher.jsp">create new teacher</a>
-                                </li>
-                                <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/teacher/listOfTeachers.jsp">teacher's list</a>
-                                </li>
-                           </ul>
-                          </li>
+                       
+                         
                            <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Courses<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/course/registerCourse.jsp">create new course</a>
-                                </li>
-                                <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/course/listOfCourses.jsp">course's list</a>
+                                    <a href="<%=request.getContextPath()%>/teacherPortal/course/listOfCourseForTeacherPortal.jsp">course's list</a>
                                 </li>
                           </ul>
                         
@@ -84,29 +60,14 @@
                          <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Department<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                               
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/department/registerDepartment.jsp">create new department</a>
-                                </li>
-                                <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/department/listOfDepartments.jsp">department's list</a>
+                                    <a href="<%=request.getContextPath()%>/teacherPortal/department/listOfDepartmentForTeacherPortal.jsp">department's list</a>
                                 </li>
                                 
                             </ul>
                         </li>
-                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Lessons<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/lesson/registerLesson.jsp">create new lesson</a>
-                                </li>
-                                <li>
-                                    <a href="<%=request.getContextPath()%>/adminPortal/lesson/listOfLessones.jsp">lesson's list</a>
-                                </li>
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    
+                                      
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

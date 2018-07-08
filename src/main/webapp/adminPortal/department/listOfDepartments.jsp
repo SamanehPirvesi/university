@@ -42,6 +42,9 @@
 											<tr>
 												<th>#</th>
 												<th>Department Name</th>
+												<th>List of Courses</th>
+												<th>list of Teachers </th>
+												<th>list of Students</th>
 												<th>action</th>
 											</tr>
 										</thead>
@@ -52,10 +55,18 @@
 
 													<td><c:out value="${i}" /></td>
 													<td><c:out value="${d.departmentName}" /></td>
-													
+													<td>
+													 <button id="courselist" type="submit" onclick="submitRequest(${d.departmentId},'courselist');">list of Courses</button>
+											         </td>
+											         <td>
+													 <button id="departmentlist" type="submit" onclick="submitRequest(${d.departmentId},'teacherlist');">list of Teachers</button>
+											         </td>
+											          <td>
+													 <button id="departmentlist" type="submit" onclick="submitRequest(${d.departmentId},'studentlist');">list of Students</button>
+											         </td>
  													<td>
-													 <button id="editBtn" type="submit" class="fa fa-edit" onclick="submitRequest3(${d.departmentId},'edit');"></button>
-													 <button type="submit" class="fa fa-trash-o" onclick="submitRequest3(${d.departmentId},'delete');"></button>														
+													 <button id="editBtn" type="submit" class="fa fa-edit" onclick="submitRequest(${d.departmentId},'edit');"></button>
+													 <button type="submit" class="fa fa-trash-o" onclick="submitRequest(${d.departmentId},'delete');"></button>														
 													</td>
 												</tr>
 												<c:set var="i" value="${i + 1}" scope="page" />
@@ -79,7 +90,7 @@
 	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 	<script type="text/javascript">
 	 
-		  function submitRequest3(departmentId,action) {
+		  function submitRequest(departmentId,action) {
 			  var form = prepareForm(departmentId,"departmentId");
 			   switch(action){
 			   case "delete":
@@ -88,6 +99,16 @@
 			   case "edit":
 				   form.action="./editDepartment.jsp"
 				   break;
+			   case "courselist":
+				   form.action="./listOfCourseForDepartment.jsp"
+				   break;
+			   case "teacherlist":
+				   form.action="./listOfTeacherForDepartment.jsp"
+				   break;
+	           case "studentlist":
+				   form.action="./listOfStudentForDepartment.jsp"
+				   break;
+				   
 			   }
 			    form.submit();
 		   }

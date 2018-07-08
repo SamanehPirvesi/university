@@ -14,6 +14,11 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 @Entity
 public class Course {
 	@Id
@@ -25,6 +30,7 @@ public class Course {
 	@NotNull(message = "credit cannot be null")
 	private int credit;
 	@OneToMany(mappedBy = "course", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@NotFound(action=NotFoundAction.IGNORE)
 	private Set<Student> students = new HashSet<>();
 	@ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Teacher> teachers = new HashSet<>();

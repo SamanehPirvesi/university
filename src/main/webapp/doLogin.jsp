@@ -19,7 +19,7 @@ uservice.fillUserBean(readedUser,user);
 String type=user.getType();
 switch (type.toLowerCase()){
 case "admin" : 
-	response.sendRedirect("./adminPortal/adminHome.jsp");
+	response.sendRedirect("./userPortal/adminHome.jsp");
 	break;
 case "student" :
 	response.sendRedirect("./userPortal/studentHome.jsp");

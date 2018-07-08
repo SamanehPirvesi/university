@@ -94,7 +94,7 @@
 														<%
 															for (Course c : listOfCoursesForTeacher) {
 														%>
-														<option><%=c.getCourseName()%></option>
+														<option value="<%=c.getCourseId()%>"><%=c.getCourseName()%></option>
 														<%
 															}
 														%>

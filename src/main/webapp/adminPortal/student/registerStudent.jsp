@@ -1,3 +1,4 @@
+<%@page import="com.example.model.Lesson"%>
 <%@page import="com.example.model.Department"%>
 <%@page import="com.example.model.Course"%>
 <%@page import="java.util.List"%>
@@ -7,10 +8,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="courseService"	class="com.example.service.CourseService" scope="page"></jsp:useBean>
 <jsp:useBean id="departmentService"	class="com.example.service.DepartmentService" scope="page"></jsp:useBean>
+<jsp:useBean id="lessonService"	class="com.example.service.LessonService" scope="page"></jsp:useBean>
 <%
 Set<String> errors =(Set<String>)request.getAttribute("errors");
 List<Course> courses = (List<Course>) courseService.getListOfAllCourses();
 List<Department> department = departmentService.getListAllDepartments();
+List<Lesson> lessons =lessonService.getAllLessons();
+
 pageContext.setAttribute("errors",errors);
 %>
 <!DOCTYPE html >
@@ -70,6 +74,13 @@ pageContext.setAttribute("errors",errors);
 								id="surName" placeholder="SurName">
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="birthDay" class="col-md-3 control-label">BirthDay</label> 
+ 						<div class="col-md-9"> 
+ 							<input type="date" class="form-control" name="birthday_Costum"  
+							id="birthday_Costum" placeholder="Birthday"> 
+ 						</div>
+					</div>
 						<div class="form-group">
 						<label for="department" class="col-md-3 control-label">DepartmentName</label>
 						<div class="col-md-9">
@@ -100,14 +111,22 @@ pageContext.setAttribute("errors",errors);
 							</select>
 						</div>
 					</div>
-					 
- 					<div class="form-group">
-						<label for="birthDay" class="col-md-3 control-label">BirthDay</label> 
- 						<div class="col-md-9"> 
- 							<input type="date" class="form-control" name="birthday_Costum"  
-							id="birthday_Costum" placeholder="Birthday"> 
- 						</div>
+					 <div class="form-group">
+						<label for="lesson" class="col-md-3 control-label">lesson name</label>
+						<div class="col-md-9">
+							<select class="form-control" name="lessonId">
+								<option>select a valid lesson</option>
+								<%
+									for (Lesson l : lessons) {
+								%>
+								<option value="<%=l.getLessonId()%>"><%=l.getLessonName()%></option>
+								<%
+									}
+								%>
+							</select>
+						</div>
 					</div>
+ 					
 					<div class="form-group">
 						<!-- Button -->
 						<div class="col-md-offset-3 col-md-9">

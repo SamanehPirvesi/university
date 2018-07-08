@@ -62,9 +62,9 @@
 													<td><c:out value="${u.surName}" /></td>
 													<td><c:out value="${u.birthday}"/></td>
 												
-											    	<td><c:out value="${d.departmentName}" /></td>
- 													
- 													<td><c:out value="${u.course.courseId}" /></td>
+											    	<td><c:out value="${u.department.departmentName}" /></td>
+											    	
+ 													<td><c:out value="${u.course.courseName}" /></td>
  													<td>
 													 <button id="editBtn" type="submit" class="fa fa-edit" onclick="submitRequest(${u.userId},'edit');"></button>
 													 <button type="submit" class="fa fa-trash-o" onclick="submitRequest(${u.userId},'delete');"></button>														

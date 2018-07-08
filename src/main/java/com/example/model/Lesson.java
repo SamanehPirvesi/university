@@ -2,6 +2,7 @@ package com.example.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Lesson {
@@ -23,7 +27,11 @@ public class Lesson {
 	@NotNull(message = "credit cannot be null")
 	private int credit;
 	@ManyToMany
+//	(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Course> courses=new HashSet<>();
+	@ManyToMany(mappedBy = "lessons", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Student> students = new HashSet<>();
 
 	public Lesson() {
 	}
@@ -66,8 +74,20 @@ public class Lesson {
 		this.courses = courses;
 	}
 
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
 	public void addCourses(Course c) {
 		courses.add(c);
 	}
+public void addStudents(Student s) {
+	students.add(s);
+}
 
+	
 }

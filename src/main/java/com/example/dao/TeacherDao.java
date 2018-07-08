@@ -86,6 +86,29 @@ public class TeacherDao {
 		}
 		return list;
 	}
+	public boolean DeleteDepartmentFromDepartmentListForTeacher(long departmentId,long teacherId ) {
+		boolean res = false;
+
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createNativeQuery("DELETE FROM Teacher_Department WHERE teachers_userId=:teacherid and departments_departmentId=:departmentid");
+			query.setParameter("teacherid",teacherId);
+			query.setParameter("departmentid",departmentId);
+			query.executeUpdate();
+			tx.commit();
+			res = true;
+		} catch (Exception ex) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+		return res;
+
+		
+	}
 	public Teacher getTeacherById(long id) {
 		Teacher t= null;
 		Session session = HibernateUtil.openSession();

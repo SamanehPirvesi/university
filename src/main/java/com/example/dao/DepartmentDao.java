@@ -10,6 +10,7 @@ import com.example.model.Course;
 import com.example.model.Department;
 import com.example.model.Student;
 import com.example.model.Teacher;
+import com.example.model.User;
 import com.example.utility.HibernateUtil;
 
 public class DepartmentDao {
@@ -156,8 +157,8 @@ public class DepartmentDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query<Teacher> query = session.createQuery("FROM Teacher where department_departmentId=:id",Teacher.class);
-			query.setParameter("id", id);
+			Query query = session.createNativeQuery("Select * From Teacher t, Teacher_Department td where t.userId = td.teachers_userId And td.departments_departmentId=:departmentid").addEntity(Teacher.class);
+			query.setParameter("departmentid", id);
 			list = query.getResultList();
 			tx.commit();
 		} catch (Exception ex) {

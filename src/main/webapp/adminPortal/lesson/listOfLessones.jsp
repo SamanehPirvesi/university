@@ -45,6 +45,7 @@
 												<th>#</th>
 												<th>Lesson Name</th>
 												<th>Lesson Credit</th>
+												<th> list of course</th>
 												<th>action</th>
 											</tr>
 										</thead>
@@ -56,6 +57,9 @@
 													<td><c:out value="${i}" /></td>
 													<td><c:out value="${l.lessonName}" /></td>
 													<td><c:out value="${l.credit}" /></td>
+													<td>
+													 <button id="courselist" type="submit" onclick="submitRequest(${l.lessonId},'courselist');">list of Course</button>
+											         </td>
 													<td>
 													 <button id="editBtn" type="submit" class="fa fa-edit" onclick="submitRequest(${l.lessonId},'edit');"></button>
 													 <button type="submit" class="fa fa-trash-o" onclick="submitRequest(${l.lessonId},'delete');"></button>														
@@ -91,7 +95,12 @@
 			   case "edit":
 				   form.action="./editLesson.jsp"
 				   break;
+			   case "courselist":
+				   form.action="./listOfCourseForLesson.jsp"
+				   break;
 			   }
+			   
+			  
 			    form.submit();
 		   }
 	  

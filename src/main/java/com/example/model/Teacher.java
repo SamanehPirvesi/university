@@ -11,14 +11,21 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @DiscriminatorValue("Teacher")
 public class Teacher extends User {
 	@NotNull(message = "salary cannot be null")
 	private double salary;
 	@ManyToMany
+	//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Course> courses = new HashSet<>();
 	@ManyToMany
+//	(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Department> departments = new HashSet<>();
 
 	public Teacher() {

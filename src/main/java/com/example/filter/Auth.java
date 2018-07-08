@@ -18,7 +18,7 @@ import com.example.utility.AuthUtility;
 /**
  * Servlet Filter implementation class Auth
  */
-@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = {"/lesson/*","/department/*","/course/*","/teacher/*","/student/*", "/controller/*" })
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = {"/teacherPortal/*","/adminPortal/*", "/controller/*" })
 public class Auth implements Filter {
 
 	/**

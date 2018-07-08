@@ -15,11 +15,9 @@ float salary=Float.parseFloat(request.getParameter("salary"));
 Teacher teacher=teacherService.getTeacherById(id);
 Department readedDepartment=departmentService.getDepartmentById(department);
 Course readedCourse=courseService.getCourseById(course);
-//readedCourse.addTeacher(teacher);
-readedDepartment.addTeacher(teacher);
-//teacher.addCourses(readedCourse);
-//teacher.addDepartmet(readedDepartment);
-//teacherService.updateTeacher(teacher);
+teacher.addCourses(readedCourse);
+teacher.addDepartmet(readedDepartment);
+teacherService.updateTeacher(teacher);
 departmentService.updateDepartment(readedDepartment);
 response.sendRedirect("../teacher/listOfTeachers.jsp");
 %>

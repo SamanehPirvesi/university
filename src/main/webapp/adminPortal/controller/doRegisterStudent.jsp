@@ -1,3 +1,4 @@
+<%@page import="com.example.model.Lesson"%>
 <%@page import="com.example.utility.DateUtil"%>
 <%@page import="com.example.model.Course"%>
 <%@page import="com.example.model.Department"%>
@@ -13,6 +14,7 @@
 <jsp:useBean id="userService" class="com.example.service.UserService" scope="page"></jsp:useBean>
 <jsp:useBean id="courseService" class="com.example.service.CourseService" scope="page"></jsp:useBean>
 <jsp:useBean id="departmentService" class="com.example.service.DepartmentService" scope="page"></jsp:useBean>
+<jsp:useBean id="lessonService"	class="com.example.service.LessonService" scope="page"></jsp:useBean>
 <jsp:setProperty property="*" name="student" />
 
 <% 
@@ -20,8 +22,10 @@ User readedUser = userService.getUserByUserName(student.getUserName());
 student.setBirthday(DateUtil.getStringToDate(request.getParameter("birthday_Costum")));
 long courseId = Long.parseLong(request.getParameter("courseId"));
 long departmentId=Long.parseLong(request.getParameter("departmentId"));
+long lessonId=Long.parseLong(request.getParameter("lessonId"));
 Department readedDepartment=departmentService.getDepartmentById(departmentId);
 Course readedCourse=courseService.getCourseById(courseId);
+Lesson lesson=lessonService.getLessonById(lessonId);
 
 	Set<String> errors = ValidatorBeanUtil.validateAndGetErrors(student);
 	if (student != null && readedUser == null && errors.size() == 0) {
@@ -29,6 +33,7 @@ Course readedCourse=courseService.getCourseById(courseId);
 		student.setDepartment(readedDepartment);
 		student.setType("student");
 		student.setCourse(readedCourse);
+		student.Addlessons(lesson);
 		readedCourse.addStudent(student);
 		readedDepartment.addStudent(student);
 		userService.createUser(student);
