@@ -1,13 +1,19 @@
+<%@page import="com.example.model.Student"%>
 <%@page import="com.example.model.Lesson"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="lessonService"
-	class="com.example.service.LessonService" scope="page"></jsp:useBean>
+<jsp:useBean id="lessonService"	class="com.example.service.LessonService" scope="page"></jsp:useBean>
+<jsp:useBean id="courseService"	class="com.example.service.CourseService" scope="page"></jsp:useBean>
+<jsp:useBean id="user" class="com.example.model.User" scope="session"></jsp:useBean>
+<jsp:useBean id="studentService" class="com.example.service.StudentService" scope="page"></jsp:useBean>
 
 <%
-	List<Lesson> lessons = (List<Lesson>) lessonService.getAllLessons();
+Student readedStudent=studentService.getStudentById(user.getUserId());
+long readedCourse=readedStudent.getCourse().getCourseId();
+
+	List<Lesson> lessons = (List<Lesson>) courseService.getListOfLissonForCourse(readedCourse);
 	pageContext.setAttribute("lessons", lessons);
 %>
 
@@ -45,6 +51,7 @@
 												<tr>
 													<th>#</th>
 													<th>Lesson name</th>
+													<th>Lesson Credit</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -56,6 +63,7 @@
 															value="${lesson.lessonId }">${lesson.lessonName }<br>
 
 														</td>
+														<td><c:out value="${lesson.credit }" /></td>
 
 													</tr>
 													<c:set var="i" value="${i + 1}" scope="page" />

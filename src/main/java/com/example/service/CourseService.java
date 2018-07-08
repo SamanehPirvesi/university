@@ -25,9 +25,6 @@ public class CourseService {
 		return cdao.deleteCourse(c);
 	}
 
-	public List<Lesson> getListOfLessonForCourse(long id) {
-		return cdao.getListOfLessonForCourse(id);
-	}
 	public List<Course> getListOfAllCourses(){
 		return cdao.getAllCourses();
 	}
@@ -35,4 +32,8 @@ public class CourseService {
 		return cdao.getCoursementByName(courseName);
 
 	}
+	public List<Lesson> getListOfLissonForCourse(long id) {
+		return cdao.getListOfLissonForCourse(id);
+	}
+
 }

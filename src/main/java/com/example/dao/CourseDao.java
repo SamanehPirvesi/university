@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import com.example.model.Course;
 import com.example.model.Lesson;
+import com.example.model.Teacher;
 import com.example.utility.HibernateUtil;
 
 public class CourseDao {
@@ -63,6 +64,28 @@ public class CourseDao {
 			}
 			return c;
 		}
+		public List<Lesson> getListOfLissonForCourse(long id) {
+			List<Lesson> list = null;
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				Query query = session.createNativeQuery("Select * From Lesson l, Lesson_Course lc where l.lessonId = lc.lessons_lessonId And lc.courses_courseId=:courseid").addEntity(Lesson.class);
+				query.setParameter("courseid",id);
+				list = query.getResultList();
+				tx.commit();
+			} catch (Exception ex) {
+
+				tx.rollback();
+
+			} finally {
+				session.close();
+			}
+
+			return list;
+
+		}
 
 	public boolean updateCourse(Course c) {
 		boolean res = false;
@@ -101,28 +124,7 @@ public class CourseDao {
 
 		return res;
 	}
-	public List<Lesson> getListOfLessonForCourse(long id) {
-		List<Lesson> list = null;
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			Query<Lesson> query = session.createQuery("FROM Lesson where Course_courseId=:courseid",Lesson.class);
-			query.setParameter("courseid", id);
-			list = query.getResultList();
-			tx.commit();
-		} catch (Exception ex) {
-
-			tx.rollback();
-
-		} finally {
-			session.close();
-		}
-
-		return list;
-
-	}
+	
 	public List<Course> getAllCourses() {
 		List<Course> list = null;
 		Session session = HibernateUtil.openSession();

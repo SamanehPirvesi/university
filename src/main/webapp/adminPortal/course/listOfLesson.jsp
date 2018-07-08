@@ -1,30 +1,34 @@
 <%@page import="com.example.model.Lesson"%>
+<%@page import="com.example.model.Course"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="user" class="com.example.model.User" scope="session"></jsp:useBean>
-<jsp:useBean id="studentService" class="com.example.service.StudentService" scope="page"></jsp:useBean>
-
+<jsp:useBean id="courseService" class="com.example.service.CourseService" scope="page"></jsp:useBean>
 <%
-List<Lesson> lessons = (List<Lesson>) studentService.getListOfLessonForStudent(user.getUserId());
+long id = Long.parseLong(request.getParameter("courseId"));
+Course readedCourse=courseService.getCourseById(id);
+String courseName=readedCourse.getCourseName();
+List<Lesson> lessons = (List<Lesson>) courseService.getListOfLissonForCourse(id);
 	pageContext.setAttribute("lessons",lessons);
-	%>
+	pageContext.setAttribute("courseName",courseName);
+	
+%>
 
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="../layout/header.jsp"></jsp:include>
+<jsp:include page="../../layout/header.jsp"></jsp:include>
 <body>
 
 	<div id="wrapper">
 
-		<jsp:include page="../layout/studentSidebar.jsp"></jsp:include>
+		<jsp:include page="../../layout/adminSidebar.jsp"></jsp:include>
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">Lesson list of  ( ${user.surName} ) </h1>
+						<h1 class="page-header">Lesson list of Course </h1>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -32,7 +36,7 @@ List<Lesson> lessons = (List<Lesson>) studentService.getListOfLessonForStudent(u
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">lesson list Of  ( ${user.surName} )</div>
+							<div class="panel-heading">lesson list Of Course (  ${courseName} )</div>
 							<!-- /.panel-heading -->
 							<div class="panel-body">
 								<div class="table-responsive">
@@ -41,18 +45,19 @@ List<Lesson> lessons = (List<Lesson>) studentService.getListOfLessonForStudent(u
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Lesson name</th>
-												<th>Lesson Credit</th>
+												<th>lesson name</th>
+												<th>lesson credit</th>
+												
 									</tr>
 										</thead>
 										<tbody>
 											<c:set var="i" value="1" scope="page"></c:set>
 											<c:forEach items="${lessons}" var="l">
 												<tr>
-												<td><c:out value="${i}" /></td>
-												<td><c:out value="${l.lessonName }" /></td>
-											 	<td><c:out value="${l.credit }" /></td>
-													
+
+													<td><c:out value="${i}" /></td>
+													<td><c:out value="${l.lessonName}" /></td>
+													<td><c:out value="${l.credit}" /></td>
 																									 
 												</tr>
 												<c:set var="i" value="${i + 1}" scope="page" />
@@ -73,8 +78,7 @@ List<Lesson> lessons = (List<Lesson>) studentService.getListOfLessonForStudent(u
 		</div>
 		<!-- /#page-wrapper -->
 	</div>
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
-
+	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 	 
 		  
 </body>
