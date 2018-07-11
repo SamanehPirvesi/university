@@ -12,6 +12,10 @@ String departmentName=department.getDepartmentName();
 List<Teacher> teachers = (List<Teacher>) departmentService.getListOfTeacherForDepartment(id);
 	pageContext.setAttribute("teachers",teachers);
 	pageContext.setAttribute("departmentName",departmentName);
+	for (Teacher t:teachers){
+		System.out.println("name"+t.getSurName());
+	}
+	
 	
 %>
 

@@ -2,8 +2,10 @@ package com.example.dao;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
 import com.example.model.Course;
@@ -157,8 +159,9 @@ public class DepartmentDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createNativeQuery("Select * From Teacher t, Teacher_Department td where t.userId = td.teachers_userId And td.departments_departmentId=:departmentid").addEntity(Teacher.class);
-			query.setParameter("departmentid", id);
+			
+			Query query = session.createNativeQuery("Select * From Teacher t,Teacher_Department td where t.userId = td.teachers_userId And td.departments_departmentId=:departmentid").addEntity(Teacher.class);
+			query.setParameter("departmentid",id);
 			list = query.getResultList();
 			tx.commit();
 		} catch (Exception ex) {

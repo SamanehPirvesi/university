@@ -36,4 +36,8 @@ public class TeacherService {
 	public boolean DeleteDepartmentFromDepartmentListForTeacher(long departmentId,long teacherId ) {
 		return tdao.DeleteDepartmentFromDepartmentListForTeacher(departmentId, teacherId);
 		}
+	public boolean DeleteCourseFromCourseListForTeacher(long CourseId,long teacherId ) {
+		return tdao.DeleteCourseFromCourseListForTeacher(CourseId, teacherId);
+
+	}
 }

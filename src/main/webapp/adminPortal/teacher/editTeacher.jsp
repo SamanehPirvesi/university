@@ -61,9 +61,9 @@
 													<select class="form-control" name="olddepartmentId">
 														<option>select an old department</option>
 														<%
-															for (Department d : listOfDepartmentForTeacher) {
+															for (Department d1 : listOfDepartmentForTeacher) {
 														%>
-														<option ><%=d.getDepartmentName()%></option>
+														<option value="<%=d1.getDepartmentId()%>"><%=d1.getDepartmentName()%></option>
 														<%
 															}
 														%>

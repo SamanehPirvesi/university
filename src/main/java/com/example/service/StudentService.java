@@ -30,6 +30,8 @@ public class StudentService {
 	}
 	public List<Lesson> getListOfLessonForStudent(long id) {
 		return sdao.getListOfLessonForStudent(id);
-	
+	}
+	public boolean deletLessonFromLessonListForStudent(long lessonId , long studentId) {
+		return sdao.deletLessonFromLessonListForStudent(lessonId, studentId);
 	}
 }

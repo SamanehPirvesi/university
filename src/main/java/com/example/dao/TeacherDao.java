@@ -106,6 +106,27 @@ public class TeacherDao {
 			session.close();
 		}
 		return res;
+		}
+	public boolean DeleteCourseFromCourseListForTeacher(long CourseId,long teacherId ) {
+		boolean res = false;
+
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createNativeQuery("DELETE FROM Teacher_Course WHERE teachers_userId=:teacherid and courses_courseId=:courseid");
+			query.setParameter("teacherid",teacherId);
+			query.setParameter("courseid",CourseId);
+			query.executeUpdate();
+			tx.commit();
+			res = true;
+		} catch (Exception ex) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+		return res;
 
 		
 	}

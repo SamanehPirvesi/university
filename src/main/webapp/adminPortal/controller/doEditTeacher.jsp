@@ -9,8 +9,8 @@
    
 <%
 long id =  Long.parseLong(request.getParameter("teacherId"));
-int department=Integer.parseInt(request.getParameter("departmentId"));
-int course=Integer.parseInt(request.getParameter("courseId"));
+long department=Long.parseLong(request.getParameter("departmentId"));
+long course=Long.parseLong(request.getParameter("courseId"));
 float salary=Float.parseFloat(request.getParameter("salary"));
 Teacher teacher=teacherService.getTeacherById(id);
 Department readedDepartment=departmentService.getDepartmentById(department);

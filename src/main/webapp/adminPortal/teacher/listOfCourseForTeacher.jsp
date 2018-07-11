@@ -5,14 +5,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="teacherService" class="com.example.service.TeacherService" scope="page"></jsp:useBean>
+<jsp:useBean id="teacherService"
+	class="com.example.service.TeacherService" scope="page"></jsp:useBean>
 <%
-long id = Long.parseLong(request.getParameter("teacherId"));
-Teacher teacher=teacherService.getTeacherById(id);
-String surname=teacher.getSurName();
-List<Course> courses = (List<Course>) teacherService.getListOfCoursesForTeacher(id);
+	long id = Long.parseLong(request.getParameter("teacherId"));
+	Teacher teacher = teacherService.getTeacherById(id);
+	String surname = teacher.getSurName();
+	List<Course> courses = (List<Course>) teacherService.getListOfCoursesForTeacher(id);
 	pageContext.setAttribute("courses", courses);
-	pageContext.setAttribute("surname",surname);
+	pageContext.setAttribute("surname", surname);
+	pageContext.setAttribute("teacherId", id);
 	
 %>
 
@@ -29,7 +31,7 @@ List<Course> courses = (List<Course>) teacherService.getListOfCoursesForTeacher(
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">Course list of teacher </h1>
+						<h1 class="page-header">Course list of teacher</h1>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -37,48 +39,54 @@ List<Course> courses = (List<Course>) teacherService.getListOfCoursesForTeacher(
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">courses list Of teacher (  ${surname} )</div>
+							<div class="panel-heading">courses list Of teacher (
+								${surname} )</div>
 							<!-- /.panel-heading -->
 							<div class="panel-body">
 								<div class="table-responsive">
+									<form id="signupform" class="form-horizontal" role="form"
+										action="../controller/deleteCourseFromCoursesListForTeacher.jsp" method="post">
+										<input type="hidden" name="teacherId" value="${teacherId}" />	
+										<table class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr>
+														<th>#</th>
+														<th>Course name</th>
+														<th>action</th>
+													</tr>
+												</thead>
+												<tbody>
+												<c:set var="i" value="1" scope="page"></c:set>
+													<c:forEach items="${courses}" var="c">
+														<tr>
 
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>Course name</th>
-									</tr>
-										</thead>
-										<tbody>
-											<c:set var="i" value="1" scope="page"></c:set>
-											<c:forEach items="${courses}" var="c">
-												<tr>
+															<td><c:out value="${i}" /></td>
+															<td><c:out value="${c.courseName}" /></td>
+															<td>
+																									
+																<button type="submit" class="fa fa-trash-o"
+																	value="${c.courseId}" name="courseId"></button>
+															</td>
 
-													<td><c:out value="${i}" /></td>
-													<td><c:out value="${c.courseName}" /></td>
-																									 
-												</tr>
-												<c:set var="i" value="${i + 1}" scope="page" />
-											</c:forEach>
-										</tbody>
-									</table>
-
+														</tr>
+														<c:set var="i" value="${i + 1}" scope="page" />
+													</c:forEach>
+												</tbody>
+											</table>
+</form>
+										</div>
+										<!-- /.table-responsive -->
 								</div>
-								<!-- /.table-responsive -->
+								<!-- /.panel-body -->
 							</div>
-							<!-- /.panel-body -->
+							<!-- /.panel -->
 						</div>
-						<!-- /.panel -->
 					</div>
+					<!-- /.container-fluid -->
 				</div>
-				<!-- /.container-fluid -->
 			</div>
+			<!-- /#page-wrapper -->
 		</div>
-		<!-- /#page-wrapper -->
-	</div>
-	<jsp:include page="../../layout/footer.jsp"></jsp:include>
-	<script type="text/javascript">
-	 
-		  
+		<jsp:include page="../../layout/footer.jsp"></jsp:include>
 </body>
 </html>

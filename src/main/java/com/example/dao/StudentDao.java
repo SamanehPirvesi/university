@@ -121,6 +121,26 @@ public class StudentDao {
 
 		return res;
 	}
+	public boolean deletLessonFromLessonListForStudent(long lessonId , long studentId) {
+		boolean res = false;
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createNativeQuery("Delete From Student_Lesson where lessons_lessonId=:lessonid And students_userId=:studentid");
+			query.setParameter("studentid",studentId);
+			query.setParameter("lessonid",lessonId);
+			  query.executeUpdate();
+			tx.commit();
+			res = true;
+		} catch (Exception ex) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+		return res;
+	}
 	public List<Lesson> getListOfLessonForStudent(long id) {
 		List<Lesson> list = null;
 		Session session = HibernateUtil.openSession();
